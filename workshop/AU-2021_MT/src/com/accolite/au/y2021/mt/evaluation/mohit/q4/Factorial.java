@@ -60,12 +60,26 @@ public class Factorial implements Runnable {
 		count = n;
 		
 		Factorial f = new Factorial();
-		f.series(n);
+		
+		// Creating n threads
+		for(int i=0;i<n;i++) {
+			Thread t = new Thread(f);
+			t.start();
+		}
+		
+		Thread.sleep(1000);
+		
+		
+		synchronized(f) {
+			f.notifyAll();
+		}
+		
+		System.out.println();
 		
 		// Series
 		for(Report r : report) {
 			if(r.getFactorial() == 1) {
-				System.out.print(r.getFactorial());
+				System.out.println(r.getFactorial());
 			}
 			else {
 				System.out.print(r.getFactorial() + "*");
@@ -82,13 +96,6 @@ public class Factorial implements Runnable {
 		in.close();
 	}
 	
-	public void series(int n) throws InterruptedException {
-		for(int i=0;i<n;i++) {
-			Thread t = new Thread(new Factorial());
-			t.start();
-		}
-	}
-	
 	public synchronized void generate() throws InterruptedException {
 		ThreadGroup threadGroup = Thread.currentThread().getThreadGroup();
 		report.add(new Report(count--, Thread.currentThread().getName(), threadGroup.activeCount()));
@@ -99,15 +106,9 @@ public class Factorial implements Runnable {
 		synchronized (this) {
 			try {
 				generate();
-				notify();
+				wait();
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
-			}
-			try {
-					wait();
-			}
-			catch(Exception e) {
-				e.printStackTrace();
 			}
 		}
 	}
