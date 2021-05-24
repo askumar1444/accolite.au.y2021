@@ -1,4 +1,4 @@
-package package com.accolite.au.y2021.mt.evaluation.Rakti.q6;
+package com.accolite.au.y2021.mt.evaluation.rakti.q6;
 
 public class Horse {
 	
