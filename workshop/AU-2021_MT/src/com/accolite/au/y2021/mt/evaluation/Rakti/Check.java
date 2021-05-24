@@ -1,4 +1,4 @@
-package assignment;
+package package com.accolite.au.y2021.mt.evaluation.Rakti;
 
 public class Check extends Thread{
 
