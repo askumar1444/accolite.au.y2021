@@ -1,4 +1,4 @@
-package assignment;
+package com.accolite.au.y2021.mt.evaluation.Rakti;
 
 public class SpeedClass extends Thread{
 	Horse horse;
