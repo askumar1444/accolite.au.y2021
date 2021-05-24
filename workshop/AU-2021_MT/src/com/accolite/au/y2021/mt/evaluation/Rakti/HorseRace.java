@@ -1,4 +1,4 @@
-package assignment;
+package com.accolite.au.y2021.mt.evaluation.Rakti;
 import java.util.*;
 
 class HorseRace extends Thread {
