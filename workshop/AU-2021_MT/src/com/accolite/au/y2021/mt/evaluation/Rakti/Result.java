@@ -1,4 +1,4 @@
-package com.accolite.au.y2021.mt.evaluation.Rakti;
+package package com.accolite.au.y2021.mt.evaluation.Rakti.q6;
 
 import java.util.ArrayList;
 
