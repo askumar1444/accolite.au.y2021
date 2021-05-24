@@ -1,5 +1,4 @@
 package com.accolite.au.y2021.mt.evaluation.vaibhav.q6;
-
 class RandomSpeed implements Runnable {
     Horse reference;
 

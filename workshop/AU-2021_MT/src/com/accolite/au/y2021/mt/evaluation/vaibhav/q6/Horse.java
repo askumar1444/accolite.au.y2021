@@ -5,11 +5,12 @@ import java.util.HashSet;
 public class Horse {
     String horseName;
 
+
     public Horse(String horseName) {
         this.horseName = horseName;
 
     }
-
+  
     int track_Distance;
     int distanceCov = 0;
     int speed = 0;

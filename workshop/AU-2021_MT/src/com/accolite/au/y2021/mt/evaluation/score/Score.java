@@ -5,14 +5,20 @@ import java.util.List;
 
 public enum Score {
 	
-	Mohit(new Double[] {50D}, "PENDING_FINAL"),
+	
 	Vikram(new Double[] {65D}, "PENDING_FINAL"),
 	Adishi(new Double[] {40D}, "PENDING_FINAL"),
 	Paras(new Double[] {80D, 60D}, "PENDING_FINAL"),
-	priyanshu(new Double[] {45D}, "PENDING_FINAL"),
-	Rakti(new Double[] {60D}, "PENDING_FINAL"),
-	Vaibhav(new Double[] {0D}, "REJECTED_CnP"),
-	Himanshu(new Double[] {45D}, "PENDING_FINAL");
+	Priyanshu(new Double[] {45D}, "PENDING_FINAL"),
+	Himanshu(new Double[] {45D}, "PENDING_FINAL"),
+	Hitesh(new Double[] {65D}, "PENDING_FINAL"),
+	Simran(new Double[] {20D}, "PENDING_FINAL"),
+	Vaibhav(new Double[] {0D}, "PENDING_FINAL"),
+	
+	Rakti(new Double[] {0D}, "REJECTED_CnP"),
+	
+	Mohit(new Double[] {70D}, "FINAL"),
+	Palkin(new Double[] {0D}, "FINAL");
 	
 	private Score(Double[] scores, String status) {
 		this.scores = scores;
