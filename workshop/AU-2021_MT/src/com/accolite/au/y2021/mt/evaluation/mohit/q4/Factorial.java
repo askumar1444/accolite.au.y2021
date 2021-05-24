@@ -1,3 +1,5 @@
+package com.accolite.au.y2021.mt.evaluation.mohit.q4;
+
 import java.util.Scanner;
 
 class Report {
