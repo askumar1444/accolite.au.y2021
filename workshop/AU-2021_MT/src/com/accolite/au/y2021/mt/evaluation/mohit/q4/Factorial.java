@@ -1,18 +1,3 @@
-package com.accolite.au.y2021.mt.evaluation.mohit.q4;
-/*
-   Q4)
-   Print Factorial series.
-	- Each number in the series should be printed by a unique thread.
-	- Do not use anything from the concurrent package. 
-	- After the series is printed, a report should be printed displaying which thread(name) printed which number.
-*/
-/*
- * 
- * @author: Mohit Sharma  
- * 
- */
-
-import java.util.ArrayList;
 import java.util.Scanner;
 
 class Report {
@@ -44,30 +29,35 @@ class Report {
 	}
 
 }
-//Review : Sree -- Program should print the final factorial.
+
 public class Factorial implements Runnable {
 
-	public static ArrayList<Report> report = new ArrayList<Report>();
-	private static int count;
+	private static int count,factorial=1;
+    static int check=1,n;
 
 	public static void main(String[] args) throws InterruptedException {
 
 		Scanner in = new Scanner(System.in);
 
 		System.out.print("N: ");
-		int n = in.nextInt();
+		n = in.nextInt();
+		
+		System.out.println();
 		
 		count = n;
 		
 		Factorial f = new Factorial();
+		
 		// Creating n threads
 		for(int i=0;i<n;i++) {
 			Thread t = new Thread(f);
 			t.start();
 		}
 		
-		// Review : Sree -- Program should run fine w/o the below sleep.
-		Thread.sleep(1000);
+		synchronized(f) {
+			f.wait();
+		}
+		
 		
 		synchronized(f) {
 			f.notifyAll();
@@ -75,32 +65,22 @@ public class Factorial implements Runnable {
 		
 		System.out.println();
 		
-		// Series
-		
-		// Review : Sree -- Printing should be done by respective threads.
-		for(Report r : report) {
-			if(r.getFactorial() == 1) {
-				System.out.println(r.getFactorial());
-			}
-			else {
-				System.out.print(r.getFactorial() + "*");
-			}
-		}
+		System.out.println("Factorial: " + factorial);
 		
 		System.out.println();
-		
-		// Report
-		// Review : Sree -- Printing should be done by respective threads.
-		for(Report r : report) {
-			System.out.println(r.getFactorial() + " printed by " + r.getThreadName() + " " + r.getActiveThreads());
-		}
 		
 		in.close();
 	}
 	
 	public synchronized void generate() throws InterruptedException {
-		ThreadGroup threadGroup = Thread.currentThread().getThreadGroup();
-		report.add(new Report(count--, Thread.currentThread().getName(), threadGroup.activeCount()));
+		factorial *= count;
+		System.out.println(count-- + " " + Thread.currentThread().getName());
+        if(check>=n){
+		    notifyAll();
+        }
+        else{
+            check++;
+        }
 	}
 
 	@Override
@@ -122,4 +102,5 @@ public class Factorial implements Runnable {
 	public static void setCount(int count) {
 		Factorial.count = count;
 	}
+
 }
