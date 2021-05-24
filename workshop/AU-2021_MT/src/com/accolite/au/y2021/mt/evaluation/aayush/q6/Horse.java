@@ -65,6 +65,7 @@ public class Horse implements Runnable{
 
         }
 
+
         Winner w = new Winner(this,this.distance,i,this.s);
         list.add(w);
 

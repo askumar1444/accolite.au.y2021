@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Main implements Runnable {
      public static int n;
     public static int dist;
+
     public static void main(String[] args) throws InterruptedException {
 
         Scanner a = new Scanner(System.in);
@@ -16,6 +17,7 @@ public class Main implements Runnable {
 
         n = a.nextInt();
         dist = a.nextInt();
+
         Ran random = new Ran();
 
         for(int i=0;i<n;i++)
