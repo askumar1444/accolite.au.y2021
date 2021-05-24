@@ -44,7 +44,7 @@ class Report {
 	}
 
 }
-
+//Review : Sree -- Program should print the final factorial.
 public class Factorial implements Runnable {
 
 	public static ArrayList<Report> report = new ArrayList<Report>();
@@ -60,15 +60,14 @@ public class Factorial implements Runnable {
 		count = n;
 		
 		Factorial f = new Factorial();
-		
 		// Creating n threads
 		for(int i=0;i<n;i++) {
 			Thread t = new Thread(f);
 			t.start();
 		}
 		
+		// Review : Sree -- Program should run fine w/o the below sleep.
 		Thread.sleep(1000);
-		
 		
 		synchronized(f) {
 			f.notifyAll();
@@ -77,6 +76,8 @@ public class Factorial implements Runnable {
 		System.out.println();
 		
 		// Series
+		
+		// Review : Sree -- Printing should be done by respective threads.
 		for(Report r : report) {
 			if(r.getFactorial() == 1) {
 				System.out.println(r.getFactorial());
@@ -89,6 +90,7 @@ public class Factorial implements Runnable {
 		System.out.println();
 		
 		// Report
+		// Review : Sree -- Printing should be done by respective threads.
 		for(Report r : report) {
 			System.out.println(r.getFactorial() + " printed by " + r.getThreadName() + " " + r.getActiveThreads());
 		}
@@ -120,5 +122,4 @@ public class Factorial implements Runnable {
 	public static void setCount(int count) {
 		Factorial.count = count;
 	}
-
 }
