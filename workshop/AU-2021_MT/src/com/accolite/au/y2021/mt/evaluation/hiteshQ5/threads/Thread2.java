@@ -21,6 +21,7 @@ public class Thread2 implements Runnable {
                 if (!counter.isThirdConsumed()) {
                     counter.takeWait();
                 }
+                // Review : Sree -- This thread should not modify state of another thread.
                 if (counter.getC2() % 4 == 0 && counter.getC2() != 0) {
                     counter.setThirdConsumed(false);
                 }
