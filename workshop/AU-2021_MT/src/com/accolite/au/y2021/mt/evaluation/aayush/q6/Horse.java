@@ -28,7 +28,7 @@ public class Horse implements Runnable{
         int i;
         for(i=0;true;i++)
         {
-            if(this.distance>=200)
+            if(this.distance>=Main.dist)
             {
                 break;
             }

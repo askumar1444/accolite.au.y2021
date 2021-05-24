@@ -5,16 +5,19 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main implements Runnable {
-    public static int n;
+     public static int n;
+    public static int dist;
 
     public static void main(String[] args) throws InterruptedException {
 
         Scanner a = new Scanner(System.in);
 
-        System.out.println("I have decreased the speed change time\nAnd the Distance to 200m \n" +
-                "Because it was getting too long");
+        System.out.println("Speed Change time set to 5sec");
+        System.out.println("Enter The Number Of Horses and The Distance of Race in metres");
 
         n = a.nextInt();
+        dist = a.nextInt();
+
         Ran random = new Ran();
 
         for(int i=0;i<n;i++)
