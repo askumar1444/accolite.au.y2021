@@ -2,9 +2,8 @@ package com.accolite.au.y2021.mt.evaluation.vaibhav.q6;
 
 import java.util.*;
 
-
 class Outcome {
-    ArrayList<Horse> al; 
+    ArrayList<Horse> al;
     int count = 0;
 
     Outcome() {
@@ -12,23 +11,52 @@ class Outcome {
     }
 }
 
-//Review : Sree -- Program should take track length as an input rather than hard coding it to 100
-//Review : Sree -- No threads should be running with same speed in consecutive laps.
+
+
+
 
 public class Main {
+
+    // void calculte_Distance(int track_Distance) {
+    // int distanceCov = 0;
+    // int distanceRemaining=0;
+    // distanceRemaining = track_Distance -distanceCov;
+
+    // }
+
+    public static Thread raceTh;
+
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
-
-        int N = sc.nextInt(); 
+        System.out.print("Enter no of horses you want to race : ");
+        int N = sc.nextInt();
+        System.out.print("Enter distance of the track : ");
+        int track_Distance = sc.nextInt();
+        System.out.println();
         Outcome outcome = new Outcome();
-        for (int i = 1; i <= N; i++) {
-         
-            Race r = new Race(new Horse("Horse " + i), outcome, N);
 
-            Thread th = new Thread(r);
-            th.start();
+        for (int i = 1; i <= N; i++) {
+
+            Horse rs = new Horse("Horse " + i);
+            RandomSpeed random = new RandomSpeed(rs);
+            Thread randomTh = new Thread(random);
+            randomTh.start();
+            try {
+                randomTh.join();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Statistics stats = new Statistics(rs, Thread.currentThread().getName(), random);
+
+            Race race = new Race(rs, outcome, N, stats, random);
+
+            raceTh = new Thread(race);
+            raceTh.start();
+
+            rs.track_Distance = track_Distance;
 
         }
+
         sc.close();
 
     }
