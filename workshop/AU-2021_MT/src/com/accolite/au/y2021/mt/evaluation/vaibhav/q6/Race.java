@@ -8,59 +8,34 @@ class Race implements Runnable {
     Horse reference;
     Outcome outcome;
     int N;
-    Statistics stats;
-    Thread thd;
-    RandomSpeed random;
 
-    Race(Horse reference, Outcome outcome, int N, Statistics stats, RandomSpeed random) {
+    Race(Horse reference, Outcome outcome, int N) {
         this.reference = reference;
         this.outcome = outcome;
         this.N = N;
-        this.stats = stats;
-        this.random = random;
 
     }
 
-    int count = 0;
-
     public void run() {
+        System.out.println("Race" + reference.horseName);
 
-        synchronized (this) {
-            while (true) {
-                Thread thd = new Thread(stats);
-                thd.start();
-                try {
-                    thd.join();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        while (true) {
+            if (reference.distanceCov >= reference.track_Distance) {
+                outcome.al.add(reference);
+                reference.flag = 1;
 
-                if (reference.distanceCov >= reference.track_Distance) {
-                    outcome.al.add(reference);
-                    outcome.count++;
-                    break;
-                }
-
-                if (reference.timeTaken % 10 == 0) {
-
-                    Thread th = new Thread(random);
-                    th.start();
-                    try {
-                        th.join();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-                reference.distanceRemaining = reference.track_Distance - reference.distanceCov;
-                if (reference.distanceRemaining < reference.speed) {
-
-                    reference.timeTaken += (float) reference.distanceRemaining / reference.speed;
-                    reference.distanceCov = reference.track_Distance;
-                } else {
-                    reference.distanceCov += reference.speed;
-                }
+                outcome.count++;
+                break;
             }
+
+            reference.distanceRemaining = reference.track_Distance - reference.distanceCov;
+            if (reference.distanceRemaining < reference.speed) {
+
+                reference.timeTaken += (float) reference.distanceRemaining / reference.speed;
+                reference.distanceCov = reference.track_Distance;
+
+            }
+
         }
 
         HashMap<Horse, Number> map = new HashMap<Horse, Number>();
@@ -98,7 +73,7 @@ class Race implements Runnable {
                             + "\nSpeed history : " + hashMap.getKey().history.toString());
                 }
             }
-
         }
+
     }
 }
