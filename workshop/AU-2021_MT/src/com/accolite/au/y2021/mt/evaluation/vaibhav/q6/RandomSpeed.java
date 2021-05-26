@@ -1,12 +1,12 @@
 package com.accolite.au.y2021.mt.evaluation.vaibhav.q6;
 
-class RandomSpeed implements Runnable {
-    Horse reference;
-    String horseName;
+import java.util.ArrayList;
 
-    public RandomSpeed(Horse reference, String horseName) {
-        this.reference = reference;
-        this.horseName = horseName;
+class RandomSpeed implements Runnable {
+    ArrayList<Horse> hr;
+
+    RandomSpeed(ArrayList<Horse> hr) {
+        this.hr = hr;
     }
 
     int minSpeed = 40;
@@ -16,20 +16,17 @@ class RandomSpeed implements Runnable {
 
     public synchronized void run() {
 
-        System.out.print("Random" + reference.horseName);
-        while (reference.flag != 1 && reference.horseName == horseName) {
+        for (int i = 0; i < hr.size(); i++) {
+            while (hr.get(i).flag != 1) {
+                if (count == 0) {
+                    hr.get(i).speed = (int) (Math.random() * range) + minSpeed;
+                    count++;
+                } else if (hr.get(i).timeTaken % 10 == 0) {
+                    hr.get(i).speed = (int) (Math.random() * range) + minSpeed;
 
-            if (count == 0) {
-                reference.speed = (int) (Math.random() * range) + minSpeed;
-
-                count++;
-
-            } else if (reference.timeTaken % 5 == 0) {
-
-                reference.speed = (int) (Math.random() * range) + minSpeed;
+                }
 
             }
-
         }
 
     }
