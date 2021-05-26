@@ -17,7 +17,6 @@ class Race implements Runnable {
     }
 
     public void run() {
-        System.out.println("Race" + reference.horseName);
 
         while (true) {
             if (reference.distanceCov >= reference.track_Distance) {
@@ -77,3 +76,4 @@ class Race implements Runnable {
 
     }
 }
+
