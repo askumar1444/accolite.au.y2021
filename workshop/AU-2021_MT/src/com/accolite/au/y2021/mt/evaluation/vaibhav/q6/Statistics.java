@@ -27,6 +27,8 @@ public class Statistics implements Runnable {
 					else {
 
 						if (hr.get(i).history.contains(hr.get(i).speed + "")) {
+							
+							// Review: Sree - why another thread?
 							Thread rs = new Thread();
 							rs.start();
 						} else {
