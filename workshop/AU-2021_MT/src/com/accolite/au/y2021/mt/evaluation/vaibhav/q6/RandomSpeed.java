@@ -18,17 +18,16 @@ class RandomSpeed implements Runnable {
 
         for (int i = 0; i < hr.size(); i++) {
             while (hr.get(i).flag != 1) {
+            	int speed = 0;
                 if (count == 0) {
-                    hr.get(i).speed = (int) (Math.random() * range) + minSpeed;
+                	speed = (int) (Math.random() * range) + minSpeed;
                     count++;
                 } else if (hr.get(i).timeTaken % 10 == 0) {
-                    hr.get(i).speed = (int) (Math.random() * range) + minSpeed;
-
+                	speed = (int) (Math.random() * range) + minSpeed;
                 }
-
+                hr.get(i).speed = speed;
+                System.out.println(Thread.currentThread().getName() + " -- Set Speed For: " + hr.get(i).horseName + ", speed -- " + speed);
             }
         }
-
     }
-
 }

@@ -29,7 +29,7 @@ public enum Score {
 	final String status;
 	
 	public static void main(String[] args) {
-		System.out.println("***** Report *****");
+		System.out.println("***** Report *********************** \n");
 		List<Score> sl = Arrays.asList(Score.values());
 		sl.sort((a, b) -> b.scores[0].compareTo(a.scores[0]));
 		sl.forEach(a -> System.err.println(1 + sl.indexOf(a) + ".\t" + a.name() + "\t\t====> " + a.scores[0] + " -- " + a.status));

@@ -34,12 +34,6 @@ public class Horse implements Runnable{
             }
 
 //            this.time = this.distance/this.speed;
-            System.out.println("===========================================");
-            System.out.println("STARTED -> " + Thread.currentThread().getName());
-            System.out.println("Name   Speed   Distance");
-            System.out.println(this.name + "   " + this.speed+"      "+this.distance);
-            System.out.println("===========================================");
-
 
             this.distance = this.distance+((speed*60)/100);
 
@@ -60,8 +54,12 @@ public class Horse implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
             this.speed = r1.r;
+            System.out.println("===========================================");
+            System.out.println("STARTED -> " + Thread.currentThread().getName());
+            System.out.println("Name   Speed   Distance");
+            System.out.println(this.name + "   " + this.speed+"      "+ this.distance);
+            System.out.println("===========================================");
 
         }
 
